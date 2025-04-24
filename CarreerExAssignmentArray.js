@@ -68,27 +68,57 @@ console.log(analgesics);
     
    
 // 4. Log each drug’s name and its manufacturer.
+
+// drugs.forEach(drug => {
+//   console.log(`${drug.name} - ${drug.manufacturer}`);
+// });
    
-   
+drugs.forEach(drug => {
+    console.log(`Drug: ${drug.name}, Manufacturer: ${drug.manufacturer}`);
+});
+     
    
 // 5. Return all drugs that require a prescription.
-   
+
+const prescriptionDrugs = drugs.filter(drug => drug.isPrescriptionOnly === true);
+console.log(prescriptionDrugs);
    
    
 // 6. Return a new array, each item should follow the format: "Drug: [name] - [dosageMg]mg".
-   
-   
+
+const formattedDrugs = drugs.map(drug => `Drug: ${drug.name} - ${drug.dosageMg}mg`);
+console.log(formattedDrugs);
+
    
 // 7. Write a function that returns all drugs with a stock less than 50.
-   
-   
-   
+
+function getLowStockDrugs() {
+    return drugs.filter(drug => drug.stock < 50);
+  }
+const lowStockDrugs = getLowStockDrugs();
+console.log(lowStockDrugs); 
+  
 // 8. Return all drugs that are not prescription-only.
-   
-   
+
+const nonPrescriptionDrugs = drugs.filter(drug => drug.isPrescriptionOnly === false);
+console.log(nonPrescriptionDrugs);
    
 // 9. Write a function that takes a manufacturer name and returns how many drugs are from that company.
-   
-   
+
+
+function countDrugsByManufacturer(manufacturer) {
+    return drugs.filter(drug => drug.manufacturer.toLowerCase() === manufacturer.toLowerCase()).length;
+  }
+const pfizerCount = countDrugsByManufacturer("Pfizer");
+console.log(`Number of drugs from Pfizer: ${pfizerCount}`);
+    
    
 // 10. Use forEach() to count how many drugs are Analgesics.
+
+let analgesicCount = 0;
+drugs.forEach(drug => {
+    if (drug.category === "Analgesic") {
+        analgesicCount++;
+    }
+});
+console.log(`Number of Analgesics: ${analgesicCount}`);
